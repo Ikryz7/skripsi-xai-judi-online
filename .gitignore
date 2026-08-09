@@ -1,0 +1,61 @@
+# Python environment
+.venv/
+venv/
+env/
+ENV/
+
+# VS Code
+.vscode/
+.idea/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.so
+
+# Virtual environment cache & tooling
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Trained model
+model/
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.onnx
+*.pkl
+*.pickle
+*.h5
+*.hdf5
+
+# Jupyter
+.ipynb_checkpoints/
+.jupyter/
+
+# Output / generated artifacts
+output/
+*.log
+*.tmp
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Python build artifacts
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# Coverage
+.coverage
+coverage.xml
+htmlcov/
