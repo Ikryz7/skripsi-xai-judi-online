@@ -32,13 +32,29 @@ ekstensi browser Chrome.
 ```powershell
 # Buat virtual environment
 python -m venv .venv
+```
 
-# Aktifkan virtual environment (Windows)
-.venv\Scripts\activate
+**Aktifkan virtual environment** (tiap buka terminal baru perlu aktivasi ulang):
 
-# Install dependency
+| Terminal | Perintah |
+|---|---|
+| PowerShell | `.venv\Scripts\Activate.ps1` |
+| CMD | `.venv\Scripts\activate.bat` |
+| Git Bash | `source .venv/Scripts/activate` |
+
+```powershell
+# Install dependency (setelah aktivasi)
 pip install -r requirements.txt
 ```
+
+> **Alternatif tanpa aktivasi** — panggil langsung interpreter venv:
+> ```powershell
+> .venv\Scripts\python.exe -m pip install -r requirements.txt
+> .venv\Scripts\python.exe -m uvicorn app:app --reload
+> ```
+>
+> Untuk **Jupyter/VS Code**: aktivasi tidak relevan — cukup pilih interpreter
+> `.venv\Scripts\python.exe` sebagai kernel.
 
 > Untuk **training GPU (CUDA)**, pasang PyTorch CUDA build terlebih dahulu:
 > `pip install torch --index-url https://download.pytorch.org/whl/cu128`
