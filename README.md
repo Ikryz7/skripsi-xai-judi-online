@@ -7,10 +7,10 @@ ekstensi browser Chrome.
 
 ## Alur Penelitian
 
-1. `notebook/preprocessing.ipynb` — pembersihan data (cleaning, case folding,
-   normalisasi slang, anti-homoglyph).
-2. `notebook/training.ipynb` — fine-tuning IndoBERT.
-3. `notebook/evaluation.ipynb` — evaluasi model pada data uji.
+1. `notebook/01_preprocessing.ipynb` — pembersihan data (cleaning, case
+   folding, normalisasi slang, anti-homoglyph).
+2. `notebook/02_training.ipynb` — fine-tuning IndoBERT.
+3. `notebook/03_evaluation.ipynb` — evaluasi model pada data uji.
 4. `notebook/04_prediction.ipynb` — uji prediksi manual.
 5. `notebook/05_shap.ipynb` — analisis explainability dengan SHAP.
 
@@ -39,6 +39,10 @@ python -m venv .venv
 # Install dependency
 pip install -r requirements.txt
 ```
+
+> Untuk **training GPU (CUDA)**, pasang PyTorch CUDA build terlebih dahulu:
+> `pip install torch --index-url https://download.pytorch.org/whl/cu128`
+> Lalu lanjutkan dengan `pip install -r requirements.txt`.
 
 ### 2. Jalankan API
 
