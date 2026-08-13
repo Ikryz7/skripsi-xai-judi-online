@@ -19,25 +19,25 @@ __pycache__/
 .ruff_cache/
 
 # Trained model
-model/
-*.pt
-*.pth
-*.bin
-*.safetensors
-*.onnx
-*.pkl
-*.pickle
-*.h5
-*.hdf5
+# model/
+# *.pt
+# *.pth
+# *.bin
+# *.safetensors
+# *.onnx
+# *.pkl
+# *.pickle
+# *.h5
+# *.hdf5
 
 # Jupyter
 .ipynb_checkpoints/
 .jupyter/
 
 # Output / generated artifacts
-output/
-*.log
-*.tmp
+# output/
+# *.log
+# *.tmp
 
 # Environment / secrets
 .env
