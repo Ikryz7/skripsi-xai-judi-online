@@ -8,7 +8,7 @@ ekstensi browser Chrome.
 ## Alur Penelitian
 
 1. `notebook/01_preprocessing.ipynb` — pembersihan data (cleaning, case
-   folding, normalisasi slang, anti-homoglyph).
+   folding, anti-homoglyph).
 2. `notebook/02_training.ipynb` — fine-tuning IndoBERT.
 3. `notebook/03_evaluation.ipynb` — evaluasi model pada data uji.
 4. `notebook/04_prediction.ipynb` — uji prediksi manual.
@@ -101,10 +101,10 @@ curl -X POST http://127.0.0.1:8000/predict `
 
 | Metrik | Nilai |
 |---|---|
-| Accuracy | 97.79% |
-| Precision | 97.28% |
-| Recall | 98.39% |
-| F1-Score | 97.83% |
+| Accuracy | 98.12% |
+| Precision | 97.12% |
+| Recall | 99.24% |
+| F1-Score | 98.17% |
 
 Detail: `output/classification_report.txt`, `output/evaluation_metrics.csv`.
 

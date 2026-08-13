@@ -3,45 +3,6 @@ import ftfy
 import unicodedata
 
 # =====================================================
-# NORMALISASI SLANG
-# =====================================================
-
-SLANG_DICT = {
-
-    "gk":"tidak",
-    "ga":"tidak",
-    "gak":"tidak",
-    "nggak":"tidak",
-    "enggak":"tidak",
-
-    "yg":"yang",
-    "aja":"saja",
-    "udh":"sudah",
-    "sdh":"sudah",
-    "blm":"belum",
-    "bgt":"banget",
-    "trs":"terus",
-    "tp":"tapi",
-    "utk":"untuk",
-    "jd":"jadi",
-    "klu":"kalau",
-    "klo":"kalau",
-    "dr":"dari",
-    "dgn":"dengan",
-
-    "gw":"saya",
-    "gue":"saya",
-    "sy":"saya",
-    "lu":"kamu",
-    "loe":"kamu",
-
-    "org":"orang",
-    "krn":"karena",
-    "sm":"sama",
-    "min":"admin"
-}
-
-# =====================================================
 # HOMOGLYPH
 # =====================================================
 
@@ -88,13 +49,6 @@ def preprocess(text: str):
     text = SPECIAL_RE.sub(" ", text)
 
     text = text.lower()
-
-    words = [
-        SLANG_DICT.get(word, word)
-        for word in text.split()
-    ]
-
-    text = " ".join(words)
 
     text = SPACE_RE.sub(" ", text)
 

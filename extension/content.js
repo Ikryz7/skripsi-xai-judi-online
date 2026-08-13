@@ -1,41 +1,121 @@
 console.log("YouTube Detector Active");
 
 
-async function classify(text){
+function injectStyles() {
 
-    try{
+    const style = document.createElement("style");
 
-        console.log("Mengirim:", text);
+    style.textContent = `
+        .judol-info {
+            margin-top: 10px;
+            padding: 10px 12px;
+            border-radius: 10px;
+            background: rgba(244, 67, 54, 0.09);
+            border: 1px solid rgba(244, 67, 54, 0.35);
+            font-family: "Roboto", Arial, sans-serif;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            animation: judol-fade .3s ease;
+        }
 
-        const response = await fetch(
-            "http://127.0.0.1:8000/predict",
-            {
-                method: "POST",
-                headers:{
-                    "Content-Type":"application/json"
-                },
-                body: JSON.stringify({
-                    text: text
-                })
+        @keyframes judol-fade {
+            from { opacity: 0; transform: translateY(-4px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .judol-badge {
+            font-weight: 600;
+            color: #ff5252;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .judol-conf {
+            color: var(--yt-spec-text-secondary, rgba(255, 255, 255, 0.6));
+            font-size: 11px;
+        }
+
+        .judol-btn {
+            margin-left: auto;
+            border: none;
+            border-radius: 999px;
+            padding: 6px 14px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            background: #ff5252;
+            color: #fff;
+            transition: background .2s, transform .1s;
+        }
+
+        .judol-btn:hover  { background: #ff1744; }
+        .judol-btn:active { transform: scale(.95); }
+
+        .judol-btn.shown {
+            background: rgba(128, 128, 128, 0.25);
+            color: var(--yt-spec-text-primary, #fff);
+        }
+
+        .judol-btn.shown:hover {
+            background: rgba(128, 128, 128, 0.4);
+        }
+    `;
+
+    document.head.appendChild(style);
+
+}
+
+injectStyles();
+
+
+function sendToAPI(action, text) {
+
+    return new Promise((resolve) => {
+
+        chrome.runtime.sendMessage(
+            { action, text },
+            (result) => {
+
+                if (chrome.runtime.lastError) {
+
+                    console.error(
+                        "ERROR:",
+                        chrome.runtime.lastError.message
+                    );
+
+                    resolve(null);
+
+                    return;
+
+                }
+
+                resolve(result);
+
             }
         );
 
-        console.log("Status:", response.status);
+    });
 
-        const data = await response.json();
+}
 
-        console.log("Response:", data);
+async function classify(text){
 
-        return data;
+    console.log("Mengirim:", text);
 
+    const result = await sendToAPI("predict", text);
+
+    if (result) {
+        console.log("Response:", result);
     }
-    catch(error){
-
-        console.error("ERROR:", error);
-
-        return null;
-
+    else {
+        console.log("Response: null");
     }
+
+    return result;
 
 }
 
@@ -67,7 +147,6 @@ async function detectComments(){
 
             createExplanationUI(
                 comment,
-                text,
                 result
             );
 
@@ -91,151 +170,43 @@ observer.observe(document.body, {
 // Jalankan sekali saat halaman pertama kali dimuat
 detectComments();
 
-async function explain(text){
+function createExplanationUI(comment, prediction){
 
-    try{
-
-        const response = await fetch(
-            "http://127.0.0.1:8000/explain",
-            {
-                method:"POST",
-
-                headers:{
-                    "Content-Type":"application/json"
-                },
-
-                body:JSON.stringify({
-                    text:text
-                })
-            }
-        );
-
-        return await response.json();
-
-    }
-
-    catch(error){
-
-        console.error(error);
-
-        return null;
-
-    }
-
-}
-
-function createExplanationUI(comment, text, prediction){
-
-    // Jangan membuat tombol dua kali
-    if(comment.parentElement.querySelector(".judol-info")){
+    if (comment.parentElement.querySelector(".judol-info")) {
         return;
     }
 
-    const container = document.createElement("div");
+    const wrapper = document.createElement("div");
+    wrapper.className = "judol-info";
 
-    container.className = "judol-info";
+    const badge = document.createElement("span");
+    badge.className = "judol-badge";
+    badge.innerHTML = "&#9888;&#65039; Terindikasi promosi judi online";
 
-    container.style.marginTop = "8px";
-    container.style.padding = "8px";
-    container.style.border = "1px solid #d32f2f";
-    container.style.borderRadius = "6px";
-    container.style.background = "#fff5f5";
-    container.style.fontSize = "13px";
+    const conf = document.createElement("span");
+    conf.className = "judol-conf";
+    conf.textContent = "Keyakinan " + (prediction.probability * 100).toFixed(0) + "%";
 
-    container.innerHTML = `
-        <div style="color:#d32f2f;font-weight:bold;">
-            ⚠ Komentar terindikasi promosi judi online
-        </div>
+    const btn = document.createElement("button");
+    btn.className = "judol-btn";
+    btn.textContent = "Tampilkan";
 
-        <div style="margin-top:4px;">
-            Confidence :
-            ${(prediction.probability*100).toFixed(2)}%
-        </div>
-    `;
+    btn.addEventListener("click", () => {
 
-    // Tombol tampilkan komentar
-    const showBtn = document.createElement("button");
+        const showing = comment.style.filter !== "blur(8px)";
 
-    showBtn.innerText = "Tampilkan Komentar";
+        comment.style.filter = showing ? "blur(8px)" : "";
 
-    showBtn.style.marginTop = "8px";
-    showBtn.style.marginRight = "8px";
+        btn.textContent = showing ? "Tampilkan" : "Sembunyikan";
 
-    showBtn.onclick = () => {
+        btn.classList.toggle("shown", showing);
 
-        if(comment.style.filter === "none"){
+    });
 
-            comment.style.filter = "blur(8px)";
+    wrapper.appendChild(badge);
+    wrapper.appendChild(conf);
+    wrapper.appendChild(btn);
 
-            showBtn.innerText = "Tampilkan Komentar";
-
-        }
-        else{
-
-            comment.style.filter = "none";
-
-            showBtn.innerText = "Sembunyikan Komentar";
-
-        }
-
-    };
-
-    // Tombol SHAP
-    const explainBtn = document.createElement("button");
-
-    explainBtn.innerText = "Lihat Alasan";
-
-    explainBtn.style.marginTop = "8px";
-
-    const explanation = document.createElement("div");
-
-    explanation.style.marginTop = "10px";
-
-    explainBtn.onclick = async ()=>{
-
-        explainBtn.disabled = true;
-
-        explainBtn.innerText = "Loading...";
-
-        const result = await explain(text);
-
-        explainBtn.innerText = "Lihat Alasan";
-
-        explainBtn.disabled = false;
-
-        explanation.innerHTML = "";
-
-        result.explanation.forEach(item=>{
-
-            const row = document.createElement("div");
-
-            const color =
-                item.importance >= 0
-                ? "#d32f2f"
-                : "#2e7d32";
-
-            row.innerHTML = `
-                <span style="display:inline-block;width:120px;color:${color};font-weight:bold;">
-                    ${item.token}
-                </span>
-
-                <span style="color:${color}">
-                    ${item.importance.toFixed(4)}
-                </span>
-            `;
-
-            explanation.appendChild(row);
-
-        });
-
-    };
-
-    container.appendChild(showBtn);
-
-    container.appendChild(explainBtn);
-
-    container.appendChild(explanation);
-
-    comment.parentElement.appendChild(container);
+    comment.parentElement.appendChild(wrapper);
 
 }
