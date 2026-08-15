@@ -1,27 +1,510 @@
-body{
+/* =====================================================
+   YOUTUBE JUDOL DETECTOR
+   ===================================================== */
 
-    width:250px;
+.judol-info {
+    box-sizing: border-box !important;
 
-    padding:15px;
+    width: 100% !important;
 
-    font-family:Arial,sans-serif;
+    margin-top: 12px !important;
+    padding: 14px 16px !important;
 
+    border: 1px solid #4a4a4a !important;
+    border-radius: 10px !important;
+
+    background: #212121 !important;
+
+    color: #ffffff !important;
+
+    font-family: Roboto, Arial, sans-serif !important;
+    font-size: 13px !important;
+
+    line-height: 1.5 !important;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.35) !important;
+
+    animation: judol-fade 0.25s ease !important;
 }
 
-button{
 
-    width:100%;
+/* =====================================================
+   HEADER
+   ===================================================== */
 
-    padding:10px;
+.judol-header {
+    display: flex !important;
 
-    cursor:pointer;
+    align-items: center !important;
+    justify-content: space-between !important;
 
+    gap: 12px !important;
 }
 
-#status{
 
-    margin:10px 0;
+.judol-title {
+    color: #ff6b6b !important;
 
-    font-weight:bold;
+    font-size: 14px !important;
+
+    font-weight: 600 !important;
+}
+
+
+.judol-confidence {
+    color: #ffffff !important;
+
+    font-size: 12px !important;
+
+    font-weight: 500 !important;
+
+    opacity: 0.85 !important;
+}
+
+
+/* =====================================================
+   DESCRIPTION
+   ===================================================== */
+
+.judol-description {
+    margin-top: 5px !important;
+
+    color: #d7d7d7 !important;
+
+    font-size: 13px !important;
+
+    line-height: 1.5 !important;
+}
+
+
+/* =====================================================
+   ACTION BUTTONS
+   ===================================================== */
+
+.judol-actions {
+    display: flex !important;
+
+    gap: 8px !important;
+
+    margin-top: 12px !important;
+}
+
+
+.judol-button {
+    box-sizing: border-box !important;
+
+    border: none !important;
+
+    border-radius: 18px !important;
+
+    padding: 7px 14px !important;
+
+    font-family: Roboto, Arial, sans-serif !important;
+
+    font-size: 12px !important;
+
+    font-weight: 500 !important;
+
+    cursor: pointer !important;
+
+    transition:
+        background 0.15s ease,
+        transform 0.1s ease !important;
+}
+
+
+.judol-button:hover {
+    transform: translateY(-1px) !important;
+}
+
+
+.judol-button:active {
+    transform: scale(0.97) !important;
+}
+
+
+/* =====================================================
+   SHOW / HIDE BUTTON
+   ===================================================== */
+
+.judol-button.secondary {
+    background: #3a3a3a !important;
+
+    color: #ffffff !important;
+}
+
+
+.judol-button.secondary:hover {
+    background: #4a4a4a !important;
+}
+
+
+/* =====================================================
+   WHY BUTTON
+   ===================================================== */
+
+.judol-button.primary {
+    background: #ff5252 !important;
+
+    color: #ffffff !important;
+}
+
+
+.judol-button.primary:hover {
+    background: #ff6b6b !important;
+}
+
+
+/* =====================================================
+   EXPLANATION PANEL
+   ===================================================== */
+
+.judol-explanation {
+    box-sizing: border-box !important;
+
+    margin-top: 14px !important;
+
+    padding-top: 14px !important;
+
+    border-top: 1px solid #3f3f3f !important;
+}
+
+
+/* =====================================================
+   EXPLANATION TITLE
+   ===================================================== */
+
+.judol-explanation-title {
+    color: #ffffff !important;
+
+    font-size: 14px !important;
+
+    font-weight: 600 !important;
+}
+
+
+.judol-explanation-text {
+    margin-top: 7px !important;
+
+    color: #cfcfcf !important;
+
+    font-size: 12px !important;
+
+    line-height: 1.55 !important;
+}
+
+
+/* =====================================================
+   TOKEN LIST
+   ===================================================== */
+
+.judol-token-list {
+    display: flex !important;
+
+    flex-wrap: wrap !important;
+
+    gap: 7px !important;
+
+    margin-top: 11px !important;
+}
+
+
+.judol-token {
+    display: inline-flex !important;
+
+    align-items: center !important;
+
+    padding: 5px 9px !important;
+
+    border-radius: 6px !important;
+
+    font-size: 12px !important;
+
+    font-weight: 500 !important;
+}
+
+
+/* Token yang mendorong Judi Online */
+
+.judol-token.positive {
+    background: rgba(255, 82, 82, 0.18) !important;
+
+    border: 1px solid rgba(255, 82, 82, 0.45) !important;
+
+    color: #ff8a8a !important;
+}
+
+
+/* Token yang mengurangi dukungan */
+
+.judol-token.negative {
+    background: rgba(76, 175, 80, 0.16) !important;
+
+    border: 1px solid rgba(76, 175, 80, 0.40) !important;
+
+    color: #81c784 !important;
+}
+
+
+/* =====================================================
+   TECHNICAL SHAP BUTTON
+   ===================================================== */
+
+.judol-technical-button {
+    display: inline-block !important;
+
+    margin-top: 13px !important;
+
+    padding: 0 !important;
+
+    border: none !important;
+
+    background: transparent !important;
+
+    color: #7aa7ff !important;
+
+    font-family: Roboto, Arial, sans-serif !important;
+
+    font-size: 12px !important;
+
+    font-weight: 500 !important;
+
+    cursor: pointer !important;
+}
+
+
+.judol-technical-button:hover {
+    color: #a9c5ff !important;
+
+    text-decoration: underline !important;
+}
+
+
+/* =====================================================
+   SHAP TECHNICAL PANEL
+   ===================================================== */
+
+.judol-technical {
+    box-sizing: border-box !important;
+
+    margin-top: 9px !important;
+
+    padding: 10px 12px !important;
+
+    border: 1px solid #3f3f3f !important;
+
+    border-radius: 8px !important;
+
+    background: #181818 !important;
+}
+
+
+/* =====================================================
+   SHAP ROW
+   ===================================================== */
+
+.judol-shap-row {
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: space-between !important;
+
+    padding: 6px 2px !important;
+
+    border-bottom: 1px solid #2d2d2d !important;
+
+    font-size: 12px !important;
+}
+
+
+.judol-shap-row:last-child {
+    border-bottom: none !important;
+}
+
+
+.judol-shap-token {
+    color: #eeeeee !important;
+
+    font-weight: 500 !important;
+}
+
+
+.judol-shap-value {
+    font-weight: 600 !important;
+}
+
+
+.judol-shap-value.positive {
+    color: #ff6b6b !important;
+}
+
+
+.judol-shap-value.negative {
+    color: #81c784 !important;
+}
+
+
+/* =====================================================
+   LEGEND
+   ===================================================== */
+
+.judol-legend {
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    gap: 4px !important;
+
+    margin-top: 10px !important;
+
+    padding-top: 8px !important;
+
+    border-top: 1px solid #333333 !important;
+
+    color: #aaaaaa !important;
+
+    font-size: 10px !important;
+}
+
+
+.positive-text {
+    color: #ff6b6b !important;
+}
+
+
+.negative-text {
+    color: #81c784 !important;
+}
+
+
+/* =====================================================
+   LOADING
+   ===================================================== */
+
+.judol-loading {
+    padding: 5px 0 !important;
+
+    color: #cccccc !important;
+
+    font-size: 12px !important;
+}
+
+
+/* =====================================================
+   ERROR
+   ===================================================== */
+
+.judol-error {
+    padding: 6px 0 !important;
+
+    color: #ff8a8a !important;
+
+    font-size: 12px !important;
+}
+
+
+/* =====================================================
+   LIGHT MODE
+   ===================================================== */
+
+html:not([dark]) .judol-info {
+    background: #ffffff !important;
+
+    border-color: #d5d5d5 !important;
+
+    color: #0f0f0f !important;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.12) !important;
+}
+
+
+html:not([dark]) .judol-title {
+    color: #d32f2f !important;
+}
+
+
+html:not([dark]) .judol-confidence {
+    color: #555555 !important;
+}
+
+
+html:not([dark]) .judol-description {
+    color: #555555 !important;
+}
+
+
+html:not([dark]) .judol-explanation {
+    border-color: #dddddd !important;
+}
+
+
+html:not([dark]) .judol-explanation-title {
+    color: #202020 !important;
+}
+
+
+html:not([dark]) .judol-explanation-text {
+    color: #555555 !important;
+}
+
+
+html:not([dark]) .judol-button.secondary {
+    background: #eeeeee !important;
+
+    color: #202020 !important;
+}
+
+
+html:not([dark]) .judol-button.secondary:hover {
+    background: #dddddd !important;
+}
+
+
+html:not([dark]) .judol-technical {
+    background: #f7f7f7 !important;
+
+    border-color: #dddddd !important;
+}
+
+
+html:not([dark]) .judol-shap-row {
+    border-color: #e5e5e5 !important;
+}
+
+
+html:not([dark]) .judol-shap-token {
+    color: #202020 !important;
+}
+
+
+html:not([dark]) .judol-legend {
+    border-color: #dddddd !important;
+
+    color: #666666 !important;
+}
+
+
+/* =====================================================
+   ANIMATION
+   ===================================================== */
+
+@keyframes judol-fade {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
 
 }
