@@ -1,0 +1,16 @@
+﻿id,comment,label_actual,label_predicted,prediction,probability,kategori,correct
+1,bonus slot gacor terpercaya daftar sekarang,1,1,Judi Online,0.9859145879745483,Promosi normal,True
+2,main sekarang dapat bonus besar dan jackpot,1,1,Judi Online,0.976276159286499,Promosi normal,True
+3,situs terpercaya dengan banyak pilihan permainan,1,1,Judi Online,0.874366819858551,Promosi normal,True
+4,daftar lewat link ini dan dapat bonus member baru,1,1,Judi Online,0.6827419400215149,Promosi normal,True
+5,"info slot gacor malam ini, jangan sampai ketinggalan",1,1,Judi Online,0.9667667746543884,Promosi normal,True
+6,videonya bagus dan penjelasannya mudah dipahami,0,0,Bukan Judi Online,0.9872786998748779,Komentar normal,True
+7,pertandingan tadi malam sangat seru,0,0,Bukan Judi Online,0.9318123459815979,Komentar normal,True
+8,saya setuju dengan pendapat yang disampaikan di video,0,0,Bukan Judi Online,0.9832112789154053,Komentar normal,True
+9,terima kasih sudah membagikan informasi ini,0,0,Bukan Judi Online,0.6585768461227417,Komentar normal,True
+10,semoga konten seperti ini dibuat lebih sering,0,0,Bukan Judi Online,0.9742512106895447,Komentar normal,True
+11,Β𝒪Ꮃ𝐎𝟟𝟳 bonus slot gacor,1,1,Judi Online,0.9957696199417114,Unicode/Homoglyph,True
+12,BONUS    SLOT    GACOR terpercaya,1,1,Judi Online,0.991378903388977,Kapitalisasi + spasi,True
+13,sl0t gac0r bonus besar daftar sekarang,1,1,Judi Online,0.809474766254425,Substitusi karakter,True
+14,"saya suka video ini, sl0t bukan yang saya cari",0,0,Bukan Judi Online,0.9549552798271179,Substitusi karakter + konteks,True
+15,"@user terima kasih infonya, videonya membantu",0,0,Bukan Judi Online,0.9768332242965698,Mention,True

@@ -45,8 +45,8 @@ model.eval()
 MAX_LENGTH = 128
 
 LABELS = {
-    0: "Bukan Judi Online",
-    1: "Judi Online"
+    0: "Bukan Promosi Judi Online",
+    1: "Promosi Judi Online"
 }
 
 
