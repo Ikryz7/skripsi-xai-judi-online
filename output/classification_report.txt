@@ -1,6 +1,6 @@
                    precision    recall  f1-score   support
 
-Bukan Judi Online       0.99      0.97      0.98      1018
+Bukan Judi Online       0.99      0.96      0.98      1018
       Judi Online       0.97      0.99      0.98      1053
 
          accuracy                           0.98      2071
